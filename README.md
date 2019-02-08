@@ -6,5 +6,7 @@ Be it strength, technique, flexibility, mentality, or just to continue their cli
 
 Climbing is Awesome!!  
 
-- 02072019: Warm Ups
-Currently developing the app with warm ups in mind as a starter. The exercises are stored in a javascript file for now and is mainly for mockup until a database library is decided on later.
+### 02072019: Warm Ups
+
+- Currently developing the app with warm ups in mind as a starter. 
+- The exercises are stored in a javascript file for now and is mainly for mockup until a database library is decided on later.
