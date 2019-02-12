@@ -6,20 +6,53 @@ const categories = [
 
 const cardio = [
   {
-    id: 'rowing',
-    title: 'Rowing',
+    id: 'row',
+    title: 'Row',
     description: 'Rowing Exercises...',
+    group: 'machines'
   },
   {
-    id: 'running',
-    title: 'Running',
-    description: 'Running Exercises...',
+    id: 'treadmill run',
+    title: 'Treadmill Run',
+    description: 'Treadmill Running...',
+    group: 'machines'
   },
   {
-    id: 'biking',
-    title: 'Biking',
-    description: 'Biking Exercises',
-  }
+    id: 'spin',
+    title: 'Spin Bike',
+    description: 'Spin Bike Exercises',
+    group: 'machines'
+  },
+  {
+    id: 'elliptical',
+    title: 'Elliptical',
+    description: 'Elliptical Exercises',
+    group: 'machines'
+  },
+  {
+    id: 'high knees',
+    title: 'High Knees',
+    description: 'High Knees',
+    group: 'bodyweight'
+  },
+  {
+    id: 'mountain climbers',
+    title: 'Mountain Climbers',
+    description: 'Mountain Climbers...',
+    group: 'bodyweight'
+  },
+  {
+    id: 'butt kickers',
+    title: 'Butt Kickers',
+    description: 'Butt Kickers...',
+    group: 'bodyweight'
+  },
+  {
+    id: 'lunges',
+    title: 'Lunges',
+    description: 'Lunges...',
+    group: 'bodyweight'
+  },
 ];
 
 const stretches = [

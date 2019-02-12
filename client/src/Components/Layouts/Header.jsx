@@ -5,7 +5,7 @@ export default props =>
   <AppBar position='static'>
     <Toolbar>
       <Typography variant='headline' color='inherit'>
-        Climbing Warm Ups
+        Climbing Fitness
       </Typography>
     </Toolbar>
   </AppBar>
