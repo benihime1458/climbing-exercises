@@ -6,7 +6,6 @@ import { categories, warmups } from '../store-redo.js';
 export default class extends Component {
   state = {
     warmups,
-    focus: 'training'
   }
 
   // CURRENTLY UNABLE TO FUNCTION AS INTENDED. VALUES ONLY RETURN ONCE FOR THE LOOP AND NO CLEAR VARIABLE TO ASSIGN FOR ALL COMPONENTS. 
@@ -56,7 +55,15 @@ export default class extends Component {
   }
 
   getAllWallExercises() {
-    return this.state.warmups['WALL'];
+    let values = Object.entries(this.state.warmups['WALL'].reduce((exercises, exercise) => {
+      const {group} = exercise; 
+
+      exercises[group] = exercises[group] ? [...exercises[group], exercise] : [exercise];
+
+      return exercises;
+    }, {})
+    )
+    return values;
   }
 
   handleSelectedFocus = focus => {
@@ -76,6 +83,7 @@ export default class extends Component {
     return  (<Fragment>
         <Header />
         <Exercises 
+          focus = {focus}
           cardio = {cardio}
           stretches = {stretches}
           wall = {wall}
