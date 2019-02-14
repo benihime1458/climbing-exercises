@@ -1,8 +1,22 @@
+// FINAL CATEGORIES NOT BASED ON JUST WARMUPS
+// const categories = [
+//   'warm ups',
+//   'climbing',
+//   'training',
+//   'conditioning',
+// ];
+
+// ONLY WARMUPS AND ITS GROUP PROPERTIES AS STAND IN CATEGORIES
+// REVERT BACK TO FINAL CATEGORIES EVENTUALLY. 
+//CURRENTLY USED FOR TESTING REACT COMPONENTS AND STATES
 const categories = [
-  'warm ups',
-  'climbing',
-  'training',
-  'conditioning',
+  'machines',
+  'bodyweight',
+  'on the wall',
+  'rotation',
+  'arms',
+  'wrists and fingers',
+  'wall warm ups'
 ];
 
 const warmups = {
@@ -142,21 +156,27 @@ const warmups = {
       id: 'traverse',
       title: 'Traverse',
       description: 'Traverse Exercises...',
+      group: 'wall warm ups'
     },
     {
       id: 'pyramid',
       title: 'Easy Pyramid',
       description: 'Pyramid...',
+      group: 'wall warm ups'
+
     },
     {
       id: 'sloth',
       title: 'Sloth Climbing',
       description: 'Sloth Climbing...',
+      group: 'wall warm ups'
+
     },
     {
       id: 'monkey',
       title: 'Monkey Climbing',
       description: 'Monkey Climbing',
+      group: 'wall warm ups'
     }]
 };
 
