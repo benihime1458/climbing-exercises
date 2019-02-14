@@ -11,65 +11,76 @@ const styles = {
   }
 };
 
-export default ({stretches, cardio, wall}) =>
+export default ({focus, cardio, stretches, wall}) =>
   <Grid container>
     <Grid item sm>
       <Paper style={styles.Paper}>
         {cardio.map(([group, exercises]) =>
-        <Fragment
-          key={group}
-        >
-          <Typography
-            variant='h5'
-            style={{textTransform: 'capitalize'}}
-          >
-            {group}
-          </Typography>
-          <List component="ul">
-            {exercises.map(({title}) => 
-              <ListItem key={title} button>
-                <ListItemText primary={title} />
-              </ListItem>
-            )}
-          </List>
-        </Fragment>
+        !focus || focus === group
+            ? <Fragment
+              key={group}
+            >
+                <Typography
+                  variant='h5'
+                  style={{ textTransform: 'capitalize' }}
+                >
+                  {group}
+                </Typography>
+                <List component="ul">
+                  {exercises.map(({ title }) =>
+                    <ListItem key={title} button>
+                      <ListItemText primary={title} />
+                    </ListItem>
+                  )}
+                </List>
+              </Fragment>
+          : null
         )}
         {stretches.map(([group, exercises]) =>
-        <Fragment
-          key={group}
-        >
-          <Typography
-            variant='h5'
-            style={{textTransform: 'capitalize'}}
-          >
-        {console.log("group:", group, "exercises:", exercises)}
-            {group}
-          </Typography>
-          <List component="ul">
-            {exercises.map(({title}) => 
-              <ListItem key={title} button>
-                <ListItemText primary={title} />
-              </ListItem>
-            )}
-          </List>
-        </Fragment>
+        !focus || focus === group
+          ? <Fragment
+              key={group}
+            >
+              <Typography
+                variant='h5'
+                style={{ textTransform: 'capitalize' }}
+              >
+                {console.log("group:", group, "exercises:", exercises)}
+                {group}
+              </Typography>
+              <List component="ul">
+                {exercises.map(({ title }) =>
+                  <ListItem key={title} button>
+                    <ListItemText primary={title} />
+                  </ListItem>
+                )}
+              </List>
+            </Fragment>
+          : null
+        
         )}
-        {/* DISPLAYING ALL WALL EXERCISES BECAUSE THEY ARE NOT SEPARATED INTO GROUPS */}
-        <Fragment>
-          <Typography
-            variant='h5'
-            style={{ textTransform: 'capitalize' }}
-          >
-            Wall Warm Ups
-          </Typography>
-          <List component="ul">
-            {wall.map(exercise => 
-              <ListItem key={exercise.id} button>
-                <ListItemText primary={exercise.title}/>
-              </ListItem>
-            )}
-          </List>
-        </Fragment>
+        {/* WALL WARM UPS ARE PUT IN SINGLE GROUP */}
+        {wall.map(([group, exercises]) => 
+          !focus || focus === group
+            ? <Fragment
+                key={group}
+              >
+                <Typography
+                  variant='h5'
+                  style={{textTransform: 'capitalize'}}
+                >
+                  {group}
+                </Typography>
+                <List component='ul'>
+                  {exercises.map(({title}) =>
+                    <ListItem key={title} button>
+                      <ListItemText primary={title}/>
+                    </ListItem>
+                  )}
+                </List>
+              </Fragment>
+            : null
+        )}
       </Paper>
     </Grid>
     <Grid item sm>
