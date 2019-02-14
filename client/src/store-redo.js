@@ -7,11 +7,11 @@ const categories = [
 
 const warmups = {
   'CARDIO': [{
-    id: 'row',
-    title: 'Row',
-    description: 'Rowing Exercises...',
-    group: 'machines'
-  },
+      id: 'row',
+      title: 'Row',
+      description: 'Rowing Exercises...',
+      group: 'machines'
+    },
     {
       id: 'treadmill run',
       title: 'Treadmill Run',
@@ -55,11 +55,11 @@ const warmups = {
       group: 'bodyweight'
     }],
   'STRETCH': [{
-    id: 'flags',
-    title: 'Flags',
-    description: 'Flagging...',
-    group: 'on the wall'
-  },
+      id: 'flags',
+      title: 'Flags',
+      description: 'Flagging...',
+      group: 'on the wall'
+    },
     {
       id: 'spiderman',
       title: 'Spiderman',
@@ -139,10 +139,10 @@ const warmups = {
       group: 'wrists and fingers'
     }],
   'WALL': [{
-    id: 'traverse',
-    title: 'Traverse',
-    description: 'Traverse Exercises...',
-  },
+      id: 'traverse',
+      title: 'Traverse',
+      description: 'Traverse Exercises...',
+    },
     {
       id: 'pyramid',
       title: 'Easy Pyramid',
