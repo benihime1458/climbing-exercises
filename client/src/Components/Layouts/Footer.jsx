@@ -2,10 +2,14 @@ import React from 'react';
 import { Paper, Tabs } from '@material-ui/core';
 import { Tab } from '@material-ui/core';
 
-export default ({categories}) => 
-  <Paper>
+export default ({categories, onSelect, focus}) => {
+  const index = focus
+    ? categories.findIndex(group => group === focus) + 1
+    : 0
+
+  return <Paper>
     <Tabs
-      value={0}
+      value={index}
       indicatorColor="primary"
       textColor="primary"
       centered
@@ -16,3 +20,5 @@ export default ({categories}) =>
       )}
     </Tabs>
   </Paper>
+
+} 
