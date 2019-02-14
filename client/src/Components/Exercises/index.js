@@ -6,34 +6,15 @@ const styles = {
     padding: 20, 
     marginTop: 10, 
     marginBottom: 10, 
-    height: 500, 
+    height: 800, 
     overflowY: 'auto'
   }
 };
 
-export default ({stretches, cardio}) =>
+export default ({stretches, cardio, wall}) =>
   <Grid container>
     <Grid item sm>
       <Paper style={styles.Paper}>
-        {stretches.map(([group, exercises]) =>
-        <Fragment
-          key={group}
-        >
-          <Typography
-            variant='h5'
-            style={{textTransform: 'capitalize'}}
-          >
-            {group}
-          </Typography>
-          <List component="ul">
-            {exercises.map(({title}) => 
-              <ListItem key={title} button>
-                <ListItemText primary={title} />
-              </ListItem>
-            )}
-          </List>
-        </Fragment>
-        )}
         {cardio.map(([group, exercises]) =>
         <Fragment
           key={group}
@@ -53,6 +34,42 @@ export default ({stretches, cardio}) =>
           </List>
         </Fragment>
         )}
+        {stretches.map(([group, exercises]) =>
+        <Fragment
+          key={group}
+        >
+          <Typography
+            variant='h5'
+            style={{textTransform: 'capitalize'}}
+          >
+        {console.log("group:", group, "exercises:", exercises)}
+            {group}
+          </Typography>
+          <List component="ul">
+            {exercises.map(({title}) => 
+              <ListItem key={title} button>
+                <ListItemText primary={title} />
+              </ListItem>
+            )}
+          </List>
+        </Fragment>
+        )}
+        {/* DISPLAYING ALL WALL EXERCISES BECAUSE THEY ARE NOT SEPARATED INTO GROUPS */}
+        <Fragment>
+          <Typography
+            variant='h5'
+            style={{ textTransform: 'capitalize' }}
+          >
+            Wall Warm Ups
+          </Typography>
+          <List component="ul">
+            {wall.map(exercise => 
+              <ListItem key={exercise.id} button>
+                <ListItemText primary={exercise.title}/>
+              </ListItem>
+            )}
+          </List>
+        </Fragment>
       </Paper>
     </Grid>
     <Grid item sm>
