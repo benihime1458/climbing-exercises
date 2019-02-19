@@ -11,7 +11,16 @@ const styles = {
   }
 };
 
-export default ({focus, cardio, stretches, wall}) =>
+export default ({
+  cardio, stretches, wall, //exercises
+  focus, 
+  onSelect, 
+  exercise: {
+    id,
+    title = 'Welcome!',
+    description = 'Please select an exercise on the left.'
+  }
+  }) =>
   <Grid container>
     <Grid item sm>
       <Paper style={styles.Paper}>
@@ -27,9 +36,12 @@ export default ({focus, cardio, stretches, wall}) =>
                   {group}
                 </Typography>
                 <List component="ul">
-                  {exercises.map(({ title }) =>
+                  {exercises.map(({ id,title }) =>
                     <ListItem key={title} button>
-                      <ListItemText primary={title} />
+                      <ListItemText 
+                        primary={title}
+                        onClick={() => onSelect(id)} 
+                      />
                     </ListItem>
                   )}
                 </List>
@@ -37,27 +49,27 @@ export default ({focus, cardio, stretches, wall}) =>
           : null
         )}
         {stretches.map(([group, exercises]) =>
-        !focus || focus === group
-          ? <Fragment
+          !focus || focus === group
+            ? <Fragment
               key={group}
             >
               <Typography
                 variant='h5'
                 style={{ textTransform: 'capitalize' }}
               >
-                {console.log("group:", group, "exercises:", exercises)}
                 {group}
               </Typography>
               <List component="ul">
                 {exercises.map(({ title }) =>
                   <ListItem key={title} button>
-                    <ListItemText primary={title} />
+                    <ListItemText
+                      primary={title}
+                    />
                   </ListItem>
                 )}
               </List>
             </Fragment>
-          : null
-        
+            : null
         )}
         {/* WALL WARM UPS ARE PUT IN SINGLE GROUP */}
         {wall.map(([group, exercises]) => 
@@ -88,13 +100,13 @@ export default ({focus, cardio, stretches, wall}) =>
         <Typography
           variant='display1'
         >
-          Welcome!
+          {title}
         </Typography>
         <Typography
           variant='subheading'
           style={{marginTop: 20}}
         >
-          Please select an exercise on the left.
+          {description}
         </Typography>
       </Paper>
     </Grid>

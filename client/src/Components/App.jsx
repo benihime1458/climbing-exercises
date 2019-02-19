@@ -6,14 +6,17 @@ import { categories, warmups } from '../store-redo.js';
 export default class extends Component {
   state = {
     warmups,
+    exercise: {}
   }
 
-  // CURRENTLY UNABLE TO FUNCTION AS INTENDED. VALUES ONLY RETURN ONCE FOR THE LOOP AND NO CLEAR VARIABLE TO ASSIGN FOR ALL COMPONENTS. 
+  // CURRENTLY UNABLE TO FUNCTION AS INTENDED. VALUES ONLY RETURN ONCE FOR THE LOOP AND NO CLEAR VARIABLE TO ASSIGN FOR ALL COMPONENTS.  
   getExercisesByGroup() {
+    let exercisesByGroup = {};
     for (let key in this.state.warmups) {
+      console.log('key', key);
       let values = Object.entries(this.state.warmups[key].reduce((exercises, exercise) => {
         const {group} = exercise;
-
+        console.log('exercise', exercise === undefined)
         if (exercises[group] != undefined) {
           exercises[group] = [...exercises[group], exercise];
         } else {
@@ -23,8 +26,9 @@ export default class extends Component {
 
       }, {})
       )
-      return values;
+      exercisesByGroup[key] = values; 
     }
+    return exercisesByGroup;
   }
 
   getCardioByGroup() {
@@ -60,7 +64,7 @@ export default class extends Component {
 
       exercises[group] = exercises[group] ? [...exercises[group], exercise] : [exercise];
 
-      return exercises;
+      return exercises; 
     }, {})
     )
     return values;
@@ -72,17 +76,31 @@ export default class extends Component {
     })
   }
 
+  handleSelectedExercise = id => {
+    this.setState(({warmups}) => ({
+        exercise: warmups['CARDIO'].find(ex => ex.id === id),
+      // exercise: warmups['STRETCH'].find(ex => ex.id === id),
+      // exercise: warmups['WALL'].find(ex => ex.id === id)
+    }))
+  }
+
   render() {
 
     const cardio = this.getCardioByGroup()
+    // console.log("hey", cardio)
     const stretches = this.getStretchesByGroup()
-    const wall = this.getAllWallExercises(),
+    const wall = this.getAllWallExercises()
+    const allEx = this.getExercisesByGroup()
+    console.log('all', allEx)
+    ,
     // console.log(wall)
-    {focus} = this.state
+    {focus, exercise} = this.state
 
     return  (<Fragment>
         <Header />
-        <Exercises 
+        <Exercises
+          exercise = {exercise}
+          onSelect = {this.handleSelectedExercise} 
           focus = {focus}
           cardio = {cardio}
           stretches = {stretches}
