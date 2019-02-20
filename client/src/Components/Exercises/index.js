@@ -72,7 +72,6 @@ export default ({
             </Fragment>
             : null
         )}
-        {/* WALL WARM UPS ARE PUT IN SINGLE GROUP */}
         {wall.map(([group, exercises]) => 
           !focus || focus === group
             ? <Fragment
@@ -85,9 +84,12 @@ export default ({
                   {group}
                 </Typography>
                 <List component='ul'>
-                  {exercises.map(({title}) =>
+                  {exercises.map(({id, title}) =>
                     <ListItem key={title} button>
-                      <ListItemText primary={title}/>
+                      <ListItemText 
+                        primary={title}
+                        onClick={() => onSelect(id)} 
+                      />
                     </ListItem>
                   )}
                 </List>

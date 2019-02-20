@@ -21,3 +21,7 @@ Climbing is Awesome!!
 - Need to refactor selected exercise function in App.jsx to handle all focus categories
 - Footer switches between focuses but is only using the warmups' group names to confirm working code 
 - State and Lifecycle components need to be brushed up on
+
+### 02212019: More Refactoring
+
+- Was able to refactor the grouping of exercises into the warmupsByGroup state with the help of ES6 destructuring 

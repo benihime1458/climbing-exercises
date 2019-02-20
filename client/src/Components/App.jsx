@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { Header, Footer } from './Layouts';
 import Exercises from './Exercises';
-import { categories, warmups } from '../store-redo.js';
+import { categories, warmups } from '../store.js';
 
 export default class extends Component {
   state = {
     warmups,
-    warmupsByGroup: {},
+    warmupsByGroup: [...warmups['CARDIO'], ...warmups['STRETCH'], ...warmups['WALL']],
     exercise: {}
   }
 
@@ -15,13 +15,15 @@ export default class extends Component {
     for (let key in this.state.warmups) {
       let values = Object.entries(this.state.warmups[key].reduce((exercises, exercise) => {
         const {group} = exercise;
+
+        // ES5 if... else 
         // if (exercises[group] != undefined) {
         //   exercises[group] = [...exercises[group], exercise];
         // } else {
         //   exercises[group] = [exercise];
         // }
         
-        // ternary operator
+        // ES6 ternary operator
         exercises[group] = exercises[group] ? [...exercises[group], exercise] : [exercise];
         
         return exercises;
@@ -29,33 +31,23 @@ export default class extends Component {
       )
       exercisesByGroup[key] = values; 
     }
-    // let wut = this.state.warmups
-    // console.log(Object.keys(wut))
+
     return exercisesByGroup;
   }
 
   handleSelectedFocus = focus => {
-    this.setState({
-      focus
-    })
+    this.setState({focus})
   }
 
-  // work in progress... 
-  // find a way to check key in warmups and find matching id for selected exercise
   handleSelectedExercise = id => {
-    this.setState(({warmups}) => ({
-        // exercise: warmups['CARDIO'].find(ex => ex.id === id),
-      exercise: warmups['STRETCH'].find(ex => ex.id === id),
-      // exercise: warmups['WALL'].find(ex => ex.id === id)
+    this.setState(({warmupsByGroup}) => ({
+        exercise: warmupsByGroup.find(ex => ex.id === id),
     }))
   }
 
   render() {
-    const {CARDIO} = this.getExercisesByGroup()
-    const {STRETCH} = this.getExercisesByGroup()
-    const {WALL} = this.getExercisesByGroup()
+    const {CARDIO, STRETCH, WALL} = this.getExercisesByGroup()
     ,
-    // console.log(wall)
     {focus, exercise} = this.state
 
     return  (<Fragment>
