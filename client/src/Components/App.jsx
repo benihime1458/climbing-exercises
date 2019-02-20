@@ -6,7 +6,7 @@ import { categories, warmups } from '../store.js';
 export default class extends Component {
   state = {
     warmups,
-    warmupsByGroup: [...warmups['CARDIO'], ...warmups['STRETCH'], ...warmups['WALL']],
+    allWarmupExercises: [...warmups['CARDIO'], ...warmups['STRETCH'], ...warmups['WALL']],
     exercise: {}
   }
 
@@ -24,7 +24,9 @@ export default class extends Component {
         // }
         
         // ES6 ternary operator
-        exercises[group] = exercises[group] ? [...exercises[group], exercise] : [exercise];
+        exercises[group] = exercises[group] ? 
+          [...exercises[group], exercise] 
+          : [exercise];
         
         return exercises;
       }, {})
@@ -40,13 +42,14 @@ export default class extends Component {
   }
 
   handleSelectedExercise = id => {
-    this.setState(({warmupsByGroup}) => ({
-        exercise: warmupsByGroup.find(ex => ex.id === id),
+    this.setState(({allWarmupExercises}) => ({
+        exercise: allWarmupExercises.find(ex => ex.id === id),
     }))
   }
 
   render() {
     const {CARDIO, STRETCH, WALL} = this.getExercisesByGroup()
+    const warmupsByGroup = [...CARDIO, ...STRETCH, ...WALL] // MAY UPDATE TO STATE INSTEAD IN THE FUTURE
     ,
     {focus, exercise} = this.state
 
@@ -56,9 +59,7 @@ export default class extends Component {
           exercise = {exercise}
           onSelect = {this.handleSelectedExercise} 
           focus = {focus}
-          cardio = {CARDIO}
-          stretches = {STRETCH}
-          wall = {WALL}
+          warmupsByGroup = {warmupsByGroup}
         />
         <Footer 
           focus = {focus}

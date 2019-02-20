@@ -12,7 +12,7 @@ const styles = {
 };
 
 export default ({
-  cardio, stretches, wall, //exercises
+  warmupsByGroup,
   focus, 
   onSelect, 
   exercise: {
@@ -24,7 +24,7 @@ export default ({
   <Grid container>
     <Grid item sm>
       <Paper style={styles.Paper}>
-        {cardio.map(([group, exercises]) =>
+        {warmupsByGroup.map(([group, exercises]) =>
         !focus || focus === group
             ? <Fragment
               key={group}
@@ -47,54 +47,6 @@ export default ({
                 </List>
               </Fragment>
           : null
-        )}
-        {stretches.map(([group, exercises]) =>
-          !focus || focus === group
-            ? <Fragment
-              key={group}
-            >
-              <Typography
-                variant='h5'
-                style={{ textTransform: 'capitalize' }}
-              >
-                {group}
-              </Typography>
-              <List component="ul">
-                {exercises.map(({ id, title }) =>
-                  <ListItem key={title} button>
-                    <ListItemText
-                      primary={title}
-                      onClick={() => onSelect(id)} 
-                    />
-                  </ListItem>
-                )}
-              </List>
-            </Fragment>
-            : null
-        )}
-        {wall.map(([group, exercises]) => 
-          !focus || focus === group
-            ? <Fragment
-                key={group}
-              >
-                <Typography
-                  variant='h5'
-                  style={{textTransform: 'capitalize'}}
-                >
-                  {group}
-                </Typography>
-                <List component='ul'>
-                  {exercises.map(({id, title}) =>
-                    <ListItem key={title} button>
-                      <ListItemText 
-                        primary={title}
-                        onClick={() => onSelect(id)} 
-                      />
-                    </ListItem>
-                  )}
-                </List>
-              </Fragment>
-            : null
         )}
       </Paper>
     </Grid>
