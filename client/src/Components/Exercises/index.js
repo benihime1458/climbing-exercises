@@ -36,7 +36,7 @@ export default ({
                   {group}
                 </Typography>
                 <List component="ul">
-                  {exercises.map(({ id,title }) =>
+                  {exercises.map(({ id, title }) =>
                     <ListItem key={title} button>
                       <ListItemText 
                         primary={title}
@@ -60,10 +60,11 @@ export default ({
                 {group}
               </Typography>
               <List component="ul">
-                {exercises.map(({ title }) =>
+                {exercises.map(({ id, title }) =>
                   <ListItem key={title} button>
                     <ListItemText
                       primary={title}
+                      onClick={() => onSelect(id)} 
                     />
                   </ListItem>
                 )}

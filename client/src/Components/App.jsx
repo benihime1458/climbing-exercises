@@ -6,68 +6,32 @@ import { categories, warmups } from '../store-redo.js';
 export default class extends Component {
   state = {
     warmups,
+    warmupsByGroup: {},
     exercise: {}
   }
 
-  // CURRENTLY UNABLE TO FUNCTION AS INTENDED. VALUES ONLY RETURN ONCE FOR THE LOOP AND NO CLEAR VARIABLE TO ASSIGN FOR ALL COMPONENTS.  
   getExercisesByGroup() {
     let exercisesByGroup = {};
     for (let key in this.state.warmups) {
-      console.log('key', key);
       let values = Object.entries(this.state.warmups[key].reduce((exercises, exercise) => {
         const {group} = exercise;
-        console.log('exercise', exercise === undefined)
-        if (exercises[group] != undefined) {
-          exercises[group] = [...exercises[group], exercise];
-        } else {
-          exercises[group] = [exercise];
-        }
+        // if (exercises[group] != undefined) {
+        //   exercises[group] = [...exercises[group], exercise];
+        // } else {
+        //   exercises[group] = [exercise];
+        // }
+        
+        // ternary operator
+        exercises[group] = exercises[group] ? [...exercises[group], exercise] : [exercise];
+        
         return exercises;
-
       }, {})
       )
       exercisesByGroup[key] = values; 
     }
+    // let wut = this.state.warmups
+    // console.log(Object.keys(wut))
     return exercisesByGroup;
-  }
-
-  getCardioByGroup() {
-    let values = Object.entries(this.state.warmups['CARDIO'].reduce((exercises, exercise) => { 
-      const {group} = exercise;
-
-      exercises[group] = exercises[group] ? [...exercises[group], exercise] : [exercise];
-
-      return exercises;
-    }, {})
-    )
-    return values;
-  }
-
-  getStretchesByGroup() {
-    let values = Object.entries(this.state.warmups['STRETCH'].reduce((exercises, exercise) => {
-      const {group} = exercise;
-
-      if (exercises[group] != undefined) {
-        exercises[group] = [...exercises[group], exercise];
-      } else {
-        exercises[group] = [exercise];
-      }
-      return exercises;
-    }, {})
-    )
-    return values;
-  }
-
-  getAllWallExercises() {
-    let values = Object.entries(this.state.warmups['WALL'].reduce((exercises, exercise) => {
-      const {group} = exercise; 
-
-      exercises[group] = exercises[group] ? [...exercises[group], exercise] : [exercise];
-
-      return exercises; 
-    }, {})
-    )
-    return values;
   }
 
   handleSelectedFocus = focus => {
@@ -76,22 +40,20 @@ export default class extends Component {
     })
   }
 
+  // work in progress... 
+  // find a way to check key in warmups and find matching id for selected exercise
   handleSelectedExercise = id => {
     this.setState(({warmups}) => ({
-        exercise: warmups['CARDIO'].find(ex => ex.id === id),
-      // exercise: warmups['STRETCH'].find(ex => ex.id === id),
+        // exercise: warmups['CARDIO'].find(ex => ex.id === id),
+      exercise: warmups['STRETCH'].find(ex => ex.id === id),
       // exercise: warmups['WALL'].find(ex => ex.id === id)
     }))
   }
 
   render() {
-
-    const cardio = this.getCardioByGroup()
-    // console.log("hey", cardio)
-    const stretches = this.getStretchesByGroup()
-    const wall = this.getAllWallExercises()
-    const allEx = this.getExercisesByGroup()
-    console.log('all', allEx)
+    const {CARDIO} = this.getExercisesByGroup()
+    const {STRETCH} = this.getExercisesByGroup()
+    const {WALL} = this.getExercisesByGroup()
     ,
     // console.log(wall)
     {focus, exercise} = this.state
@@ -102,9 +64,9 @@ export default class extends Component {
           exercise = {exercise}
           onSelect = {this.handleSelectedExercise} 
           focus = {focus}
-          cardio = {cardio}
-          stretches = {stretches}
-          wall = {wall}
+          cardio = {CARDIO}
+          stretches = {STRETCH}
+          wall = {WALL}
         />
         <Footer 
           focus = {focus}
