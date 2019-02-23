@@ -25,3 +25,9 @@ Climbing is Awesome!!
 ### 02212019: More Refactoring
 
 - Was able to refactor the grouping of exercises into the warmupsByGroup state with the help of ES6 destructuring 
+
+### 02222019: Diaglog Content, Passing Props
+
+- Planning to use dialog blocks to facilitate CRUD functionality. 
+- Props can be passed down components using 'this.props.[exampleprop]'
+- Will eventually test material-ui icons
