@@ -1,10 +1,12 @@
 import React from 'react';
-import { Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Fab, FormHelperText } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 
 const styles = {
   Button: {
     marginTop: 5,
     marginBottom: 20,
+    left: '80%'
   }
 }
 
@@ -24,9 +26,9 @@ export default class AddExercise extends React.Component {
   render() {
     return (
       <div>
-        <Button style={styles.Button} variant="outlined" color="primary" onClick={this.handleClickOpen}>
-          Add Exercise
-        </Button>
+        <Fab style={styles.Button} variant="round" color="primary" onClick={this.handleClickOpen}>
+          <AddIcon fontSize='large'/>
+        </Fab>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -50,7 +52,6 @@ export default class AddExercise extends React.Component {
             />
             <TextField
               required
-              autoFocus
               margin="dense"
               id="name"
               label="Description"
