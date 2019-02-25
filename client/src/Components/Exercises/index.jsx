@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
 import { Grid, Paper, Typography, List, ListItem, ListItemText  } from '@material-ui/core';
-import AddExercise from './Dialogs/Create';
 
 const styles = {
   Paper: { 
@@ -38,15 +37,17 @@ export default ({
                 </Typography>
                 <List component="ul">
                   {exercises.map(({ id, title }) =>
-                    <ListItem key={title} button>
+                    <ListItem 
+                      key={title} 
+                      button
+                      onClick={() => onSelect(id)} 
+                    >
                       <ListItemText 
                         primary={title}
-                        onClick={() => onSelect(id)} 
                       />
                     </ListItem>
                   )}
                 </List>
-                <AddExercise group={group}/>
               </Fragment>
           : null
         )}

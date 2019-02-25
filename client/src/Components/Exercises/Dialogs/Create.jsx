@@ -1,14 +1,6 @@
-import React from 'react';
-import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Fab, FormHelperText } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
-
-const styles = {
-  Button: {
-    marginTop: 5,
-    marginBottom: 20,
-    left: '80%'
-  }
-}
+import React, { Fragment }  from 'react';
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Fab } from '@material-ui/core';
+import Add from '@material-ui/icons/Add';
 
 export default class AddExercise extends React.Component {
   state = {
@@ -25,50 +17,57 @@ export default class AddExercise extends React.Component {
 
   render() {
     return (
-      <div>
-        <Fab style={styles.Button} variant="round" color="primary" onClick={this.handleClickOpen}>
-          <AddIcon fontSize='large'/>
+      <Fragment>
+
+        <Fab 
+          size='small' 
+          onClick={this.handleClickOpen}
+        >
+          <Add />
         </Fab>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
-          aria-labelledby="form-dialog-title"
+          aria-labelledby='form-dialog-title'
         >
           <DialogTitle 
-            id="form-dialog-title"
+            id='form-dialog-title'
             style={{ textTransform: 'capitalize' }}
           >
             Add {this.props.group} Exercise
           </DialogTitle>
           <DialogContent>
-            <TextField
-              required
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Title"
-              type="text"
-              fullWidth
-            />
-            <TextField
-              required
-              margin="dense"
-              id="name"
-              label="Description"
-              type="text"
-              fullWidth
-            />
+            <form>
+              <TextField
+                required
+                autoFocus
+                margin='dense'
+                id='name'
+                label='Title'
+                type='text'
+                fullWidth
+              />
+              <TextField
+                margin='dense'
+                id='name'
+                label='Description'
+                type='text'
+                fullWidth
+                multiline
+                rows='4'
+              />
+            </form>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.handleClose} color="primary">
-              Submit
+            <Button 
+              onClick={this.handleClose} 
+              color='primary'
+            >
+              Create
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </Fragment>
     );
   }
 }

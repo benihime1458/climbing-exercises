@@ -25,8 +25,8 @@ export default class extends Component {
         
         // ES6 ternary operator
         exercises[group] = exercises[group] ? 
-          [...exercises[group], exercise] 
-          : [exercise];
+          [...exercises[group], exercise] //true 
+          : [exercise]; //false
         
         return exercises;
       }, {})
